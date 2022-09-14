@@ -6,7 +6,7 @@
 }
 
 body{
-    background: linear-gradient(180deg,#594cee 0%,#8dd0f5 100%);
+    background: linear-gradient(180deg,#1e0783a2 0%,#147ab1 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@ body{
 }
 .container{
     background: #5c54ed;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
     border-radius: 1rem;
     padding: 2rem;
     color: #fdfdfd;
@@ -86,7 +86,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-.details-container .umidity{
+.details-container .humidity{
     border-right:  2px solid #fff;
     margin: 0.6rem;
     padding: 0.6rem;

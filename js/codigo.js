@@ -4,14 +4,14 @@ const API="https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&e
 
 const cityInput=document.querySelector('.city-input');
 const btnSearch=document.querySelector('.search');
-
+const weatherContainer=document.querySelector('.weather-data')
 const cityData={
     cityElement:document.querySelector('.city'),
     temperaturaElement:document.querySelector('.temperature span'),
     descriptionElement:document.querySelector('.description'),
     weatherIconElement:document.querySelector('.weather-icon'),
     countryElement:document.querySelector('.country'),
-    umidityElement:document.querySelector('.umidity span'),
+    humidityElement:document.querySelector('.humidity span'),
     windElement:document.querySelector('.wind span')
 }
 
@@ -33,15 +33,21 @@ const showWeatheData= async(city)=>{
     cityData.descriptionElement.innerText=description.replace(description[0],description[0].toUpperCase())
     cityData.weatherIconElement.setAttribute("src",`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
     cityData.countryElement.setAttribute("src",apiCountryFlags+data.sys.country)
-    cityData.umidityElement.innerText=`${data.main.umidity}%`;
-    cityData.windElement.innerText=`${data.wind.speed}km/h`
+    cityData.humidityElement.innerText=`${data.main.humidity}%`;
+    cityData.windElement.innerText=`${data.wind.speed}km/h`;
+    weatherContainer.style.display="block";
 }
 
 
 
 btnSearch.addEventListener('click',(event)=>{
     event.preventDefault();
-
     const city=cityInput.value.toLowerCase()
     showWeatheData(city)
+})
+cityInput.addEventListener('keyup',(event)=>{
+    if(event.code==="Enter"){
+        const city=event.target.value;
+        showWeatheData(city);
+    }
 })
