@@ -5,6 +5,7 @@ const API="https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&e
 const cityInput=document.querySelector('.city-input');
 const btnSearch=document.querySelector('.search');
 const weatherContainer=document.querySelector('.weather-data')
+const messageError=document.querySelector('.error');
 const cityData={
     cityElement:document.querySelector('.city'),
     temperaturaElement:document.querySelector('.temperature span'),
@@ -19,8 +20,15 @@ const cityData={
 const getWeatherData= async(city)=>{
     const apiWeatherUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${KEYAPI}&lang=pt`;
     const response= await fetch(apiWeatherUrl);
-    const data=await response.json();
-    return data;
+    const error=response.status===404;
+    if(error){
+        messageError.style.display="block"
+        return
+    }else{
+        const data=await response.json();
+        messageError.style.display="none"
+        return data;
+    }
 }
 
 
@@ -37,7 +45,6 @@ const showWeatheData= async(city)=>{
     cityData.windElement.innerText=`${data.wind.speed}km/h`;
     weatherContainer.style.display="block";
 }
-
 
 
 btnSearch.addEventListener('click',(event)=>{
